@@ -53,7 +53,7 @@ public class LoginController {
 	}
 	
 
-	public   void setLoginSuperAdmin(boolean isLoginSuperAdmin) {
+	public void setLoginSuperAdmin(boolean isLoginSuperAdmin) {
 		this.isLoginSuperAdmin = isLoginSuperAdmin;
 	}
 
