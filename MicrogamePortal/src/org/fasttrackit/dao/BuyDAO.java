@@ -2,6 +2,7 @@ package org.fasttrackit.dao;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -9,12 +10,12 @@ import java.sql.Statement;
 
 import org.fasttrackit.helper.DBHelper;
 import org.fasttrackit.pojo.Annoncement;
+import org.fasttrackit.pojo.User;
 
 public class BuyDAO {
 	//Create table
 	public void createTableSales() throws SQLException {
-			
-		    
+		
 			DBHelper helper = new DBHelper();
 			Connection con = helper.getConnectionSocietate();
 			String insertUser = "CREATE TABLE IF NOT EXISTS buy"+ 
@@ -45,7 +46,8 @@ public class BuyDAO {
 		
 		String insertUser = "INSERT INTO buy "
 				+ "(user_name,titlu_anunt,data_anunt,text_anunt,pret_anunt, "
-				+ "phone_number,adress,photo1,photo2,photo3,photo4,photo5,statute) values ( ?, ?,?,?,?,?,?,?,?,?,?,?,?)"; 
+				+ "phone_number,adress,photo1,photo2,photo3,photo4,photo5,statute)"
+				+ " values ( ?, ?,?,?,?,?,?,?,?,?,?,?,?)"; 
 		
 		
 		PreparedStatement ps = con.prepareStatement(insertUser);
@@ -69,4 +71,52 @@ public class BuyDAO {
 		 return row; 
 	}
 
+	//update anunt
+	public void updateAnunt(Annoncement anunt) throws SQLException {
+		DBHelper helper = new DBHelper();
+		Connection con = helper.getConnectionSocietate();
+		String insertUser = "UPDATE user buy"+ 
+				" id=?,user_name=?,titlu_anunt=?,data_anunt=?,text_anunt=?,pret_anunt=?,phone_number=?,adress=?,"
+				+ "photo1=?,photo2=?,photo3=?,photo4=?,photo5=?,statute=?,";
+		
+		int row = 0; 
+		Connection con1 = helper.getConnectionSocietate();
+		InputStream fs1=anunt.getPhoto1();
+		InputStream fs2=anunt.getPhoto2();
+		InputStream fs3=anunt.getPhoto3();
+		InputStream fs4=anunt.getPhoto4();
+		InputStream fs5=anunt.getPhoto5();
+				
+		
+		PreparedStatement ps = con.prepareStatement(insertUser);
+		ps.setString(1, anunt.getUserName());
+		ps.setString(2, anunt.getTitluAnunt());
+		ps.setString(3,anunt.getDataAnunt());
+		ps.setString(4, anunt.getTextAnunt());
+		ps.setString(5, anunt.getPretAnunt());
+		ps.setString(6, anunt.getPhoneNumber());
+		ps.setString(7, anunt.getAdress());
+		ps.setBlob(8,fs1);
+		ps.setBlob(9,fs2);
+		ps.setBlob(10,fs3);
+		ps.setBlob(11,fs4);
+		ps.setBlob(12,fs5);
+		ps.setString(13,anunt.getStatute());
+		 row = ps.executeUpdate();
+		 helper.closeConnection(con);
+	        }
+	
+	
+	//delete anunt
+	
+	public void deleteAnunt(Annoncement anunt) throws SQLException {
+		DBHelper helper = new DBHelper();
+		Connection con = helper.getConnectionSocietate();
+		String deleteRow = "DELETE FROM user WHERE id=?";
+		PreparedStatement ps = con.prepareStatement(deleteRow);
+		ps.setString(1,anunt.getUserName());
+		ps.executeUpdate();
+		helper.closeConnection(con);
+	}
+	 
 }
