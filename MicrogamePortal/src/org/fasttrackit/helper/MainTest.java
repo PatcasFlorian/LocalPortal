@@ -15,7 +15,7 @@ import org.fasttrackit.pojo.User;
 
 public class MainTest {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		// TODO Auto-generated method stub
 		PasswordUtils uPassword = new PasswordUtils();
 		String salt = null ;
@@ -32,6 +32,10 @@ public class MainTest {
               "ovidiu.milo@gmail.com","1234","admin33202510","SUPERADMIN","ACTIVE");
               */
 		Annoncement anuntCumparare = new Annoncement("Tina","cumpar","24","ceva","50","07344657823","Oradea");
+		Annoncement anuntCumparare1 = new Annoncement("Gina","cumpar","24","ceva","50","07344657823","Oradea");
+		Annoncement anuntCumparare2 = new Annoncement(7,"Gina","cumpar","24","ceva","50","07344657823","Oradea","active");
+		Annoncement anuntCumparare3 = new Annoncement(9,"Alinaa","cumpar","56","bicicleta","50","07344657823","Oradea","active");
+		
 UserDAO udao = new UserDAO();
 SaleDAO sales = new SaleDAO();
 BuyDAO buy= new BuyDAO();
@@ -45,10 +49,9 @@ BuyDAO buy= new BuyDAO();
 }
  int count=0;
  try {
-	buy.insertAnunt(anuntCumparare);
-} catch (FileNotFoundException e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
+//buy.insertAnunt(anuntCumparare2);
+ buy.updateAnunt(anuntCumparare2);
+	 buy.deleteAnunt(4);
 } catch (SQLException e) {
 	// TODO Auto-generated catch block
 	e.printStackTrace();

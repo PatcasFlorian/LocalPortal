@@ -150,6 +150,26 @@ public Annoncement(String userName, String titluAnunt, String dataAnunt, String 
 
 
 
+public Annoncement(int id, String userName, String titluAnunt, String dataAnunt, String textAnunt, String pretAnunt,
+		String phoneNumber, String adress, String statute) {
+	super();
+	this.id = id;
+	this.userName = userName;
+	this.titluAnunt = titluAnunt;
+	this.dataAnunt = dataAnunt;
+	this.textAnunt = textAnunt;
+	this.pretAnunt = pretAnunt;
+	this.phoneNumber = phoneNumber;
+	this.adress = adress;
+	this.statute = statute;
+}
+
+
+
+
+
+
+
 public Annoncement(String userName, String titluAnunt, String dataAnunt, String textAnunt, String pretAnunt,
 		String phoneNumber, String adress) {
 	super();

@@ -48,6 +48,8 @@ public void createTableUser() throws SQLException {
 	        helper.closeConnection(con);
 	        return result;
 	        }
+	
+	
 //verify if table User is Empty
 public int verifyTableUser() throws SQLException {
 	
