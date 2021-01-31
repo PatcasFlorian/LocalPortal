@@ -158,7 +158,11 @@ public void insertUser(User user) throws SQLException {
 	ps.executeUpdate();
 	
 	 helper.closeConnection(con);
+	
       }
+
+
+
 //update user
 public void updateUser(User user,String fullNam) throws SQLException {
 	DBHelper helper = new DBHelper();

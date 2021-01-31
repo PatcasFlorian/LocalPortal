@@ -35,7 +35,7 @@ public class MainTest {
 		Annoncement anuntCumparare1 = new Annoncement("Gina","cumpar","24","ceva","50","07344657823","Oradea");
 		Annoncement anuntCumparare2 = new Annoncement(7,"Gina","cumpar","24","ceva","50","07344657823","Oradea","active");
 		Annoncement anuntCumparare3 = new Annoncement(9,"Alinaa","cumpar","56","bicicleta","50","07344657823","Oradea","active");
-		
+		ArrayList<Annoncement> anuntCumparare4= new ArrayList<Annoncement>();
 UserDAO udao = new UserDAO();
 SaleDAO sales = new SaleDAO();
 BuyDAO buy= new BuyDAO();
@@ -50,8 +50,14 @@ BuyDAO buy= new BuyDAO();
  int count=0;
  try {
 //buy.insertAnunt(anuntCumparare2);
- buy.updateAnunt(anuntCumparare2);
-	 buy.deleteAnunt(4);
+// buy.updateAnunt(anuntCumparare2);
+	// buy.deleteAnunt(4);
+	 anuntCumparare4=buy.getAllAnuncement();
+	 for(Annoncement an:anuntCumparare4) {
+		 System.out.println("id: "+an.getId()+" fullName "+an.getUserName()+" titluAnunt "+an.getTitluAnunt()); 
+	 }
+	
+	
 } catch (SQLException e) {
 	// TODO Auto-generated catch block
 	e.printStackTrace();

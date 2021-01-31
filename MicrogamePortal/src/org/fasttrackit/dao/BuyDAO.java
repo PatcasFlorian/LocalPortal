@@ -90,7 +90,6 @@ public class BuyDAO {
 		InputStream fs4=anunt.getPhoto4();
 		InputStream fs5=anunt.getPhoto5();
 				
-		
 		PreparedStatement ps = con.prepareStatement(insertUser);
 		ps.setInt(1, anunt.getId());
 		ps.setString(2, anunt.getUserName());
@@ -200,30 +199,29 @@ public class BuyDAO {
 				Annoncement anunt =null;
 				DBHelper helper = new DBHelper();
 				Connection con = helper.getConnectionSocietate();
-				String getUser = "SELECT*FROM buy where id ='"+id+"'";
+				String getUser ="SELECT*FROM buy where id ='"+id+"'";
 			      Statement stmt = con.createStatement();
 			      ResultSet rst = stmt.executeQuery(getUser);
-			      while(rst.next());
-			          //int id = rst.getInt("id");
-			    	  String userName = rst.getString("user_name");
-			    	  String titluAnunt = rst.getString("titlu_anunt");
-			          String dataAnunt = rst.getString("data_anunt");
-			    	  String textAnunt = rst.getString("text_anunt");
-			    	  String pretAnunt = rst.getString("pret_anunt");
-			          String phoneNumber = rst.getString("phone_number");
-			    	  String adress = rst.getString("adress");
-			    	  byte[] img1 = rst.getBytes("photo1");
-				      byte[] img2 = rst.getBytes("photo2");
-				      byte[] img3 =  rst.getBytes("photo3");
-				      byte[] img4 = rst.getBytes("photo4");
-				      byte[] img5 = rst.getBytes("photo5");
-				      String statute = rst.getString("statute");
-				    		 anunt = new Annoncement(id,userName,titluAnunt,dataAnunt,textAnunt,pretAnunt,phoneNumber,adress,img1
-				    			  ,img2,img3,img4,img5,statute);
-				    		 {
-				    	  
+			      while(rst.next()) {
+			    	    
+			    	     String userName = rst.getString("user_name");
+			    	     String titluAnunt = rst.getString("titlu_anunt");
+			    		 String dataAnunt = rst.getString("data_anunt");
+			    		 String textAnunt = rst.getString("text_anunt");
+			    		 String pretAnunt = rst.getString("pret_anunt");
+			    		 String phoneNumber = rst.getString("phone_number");
+			    		 String adress = rst.getString("adress");
+			    		 byte[] img1 = rst.getBytes("photo1");
+			    		 byte[] img2 = rst.getBytes("photo2");
+			    		 byte[] img3 =  rst.getBytes("photo3");
+			    		 byte[] img4 = rst.getBytes("photo4");
+			    		 byte[] img5 = rst.getBytes("photo5");
+			    		 String statute = rst.getString("statute");
+			    		 anunt = new Annoncement(id,userName,titluAnunt,dataAnunt,textAnunt,pretAnunt,phoneNumber,adress,img1
+			    			  ,img2,img3,img4,img5,statute);
+			 	 }  
 				
 				return anunt;
-						 }		 
+								 
         }
 }
