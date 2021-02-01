@@ -4,11 +4,13 @@ import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.fasttrackit.dao.BlackListDAO;
 import org.fasttrackit.dao.BuyDAO;
 import org.fasttrackit.dao.SaleDAO;
 import org.fasttrackit.dao.UserDAO;
 import org.fasttrackit.password.PasswordUtils;
 import org.fasttrackit.pojo.Annoncement;
+import org.fasttrackit.pojo.BlackList;
 import org.fasttrackit.pojo.Roles;
 import org.fasttrackit.pojo.State;
 import org.fasttrackit.pojo.User;
@@ -35,26 +37,38 @@ public class MainTest {
 		Annoncement anuntCumparare1 = new Annoncement("Gina","cumpar","24","ceva","50","07344657823","Oradea");
 		Annoncement anuntCumparare2 = new Annoncement(7,"Gina","cumpar","24","ceva","50","07344657823","Oradea","active");
 		Annoncement anuntCumparare3 = new Annoncement(9,"Alinaa","cumpar","56","bicicleta","50","07344657823","Oradea","active");
+		BlackList blk= new BlackList(1,"Tina","Codruta","Ciucea,nr25","0656343423","ffgdfdhd","active");
+		BlackList blk1= new BlackList(2,"George1","Codruta","Ciucea,nr25","0656343423","ffgdfdhd","active");
+		BlackList blk2= new BlackList();
 		ArrayList<Annoncement> anuntCumparare4= new ArrayList<Annoncement>();
+		ArrayList<BlackList>listBlk=new ArrayList<BlackList>();
 UserDAO udao = new UserDAO();
 SaleDAO sales = new SaleDAO();
 BuyDAO buy= new BuyDAO();
+BlackListDAO blst= new BlackListDAO();
 
  try {
 	udao.createTableUser();
 	sales.createTableSales();
+	blst.createTableBlackList();
 } catch (SQLException e) {
 	// TODO Auto-generated catch block
 	e.printStackTrace();
 }
  int count=0;
  try {
+	// blst.insertBlackList(blk);
 //buy.insertAnunt(anuntCumparare2);
 // buy.updateAnunt(anuntCumparare2);
 	// buy.deleteAnunt(4);
+	// blst.updateblackList(blk1);
+	// blst.deleteBlackList(blk);
+	// blk2= blst.getBlackListId(2);
+	// System.out.println("id: "+blk2.getId()+" fullName "+blk2.getUserName()+" titluAnunt "+blk2.getFullName()); 
+	 listBlk=blst.getAllBlackListUser("Tina");
 	 anuntCumparare4=buy.getAllAnuncement();
-	 for(Annoncement an:anuntCumparare4) {
-		 System.out.println("id: "+an.getId()+" fullName "+an.getUserName()+" titluAnunt "+an.getTitluAnunt()); 
+	 for(BlackList blk3:listBlk) {
+		 System.out.println("id: "+blk3.getId()+" fullName "+blk3.getUserName()+" titluAnunt "+blk3.getFullName()); 
 	 }
 	
 	
