@@ -6,11 +6,13 @@ import java.util.ArrayList;
 
 import org.fasttrackit.dao.BlackListDAO;
 import org.fasttrackit.dao.BuyDAO;
+import org.fasttrackit.dao.MesageDAO;
 import org.fasttrackit.dao.SaleDAO;
 import org.fasttrackit.dao.UserDAO;
 import org.fasttrackit.password.PasswordUtils;
 import org.fasttrackit.pojo.Annoncement;
 import org.fasttrackit.pojo.BlackList;
+import org.fasttrackit.pojo.Mesage;
 import org.fasttrackit.pojo.Roles;
 import org.fasttrackit.pojo.State;
 import org.fasttrackit.pojo.User;
@@ -39,6 +41,8 @@ public class MainTest {
 		Annoncement anuntCumparare3 = new Annoncement(9,"Alinaa","cumpar","56","bicicleta","50","07344657823","Oradea","active");
 		BlackList blk= new BlackList(1,"Tina","Codruta","Ciucea,nr25","0656343423","ffgdfdhd","active");
 		BlackList blk1= new BlackList(2,"George1","Codruta","Ciucea,nr25","0656343423","ffgdfdhd","active");
+		Mesage mgs= new Mesage(1,"tina","Florin", "25","eroare","jdsjkdgfjk");
+		MesageDAO msgDao= new MesageDAO();
 		BlackList blk2= new BlackList();
 		ArrayList<Annoncement> anuntCumparare4= new ArrayList<Annoncement>();
 		ArrayList<BlackList>listBlk=new ArrayList<BlackList>();
@@ -48,6 +52,7 @@ BuyDAO buy= new BuyDAO();
 BlackListDAO blst= new BlackListDAO();
 
  try {
+	 msgDao.createTableMesage();
 	udao.createTableUser();
 	sales.createTableSales();
 	blst.createTableBlackList();
@@ -65,7 +70,8 @@ BlackListDAO blst= new BlackListDAO();
 	// blst.deleteBlackList(blk);
 	// blk2= blst.getBlackListId(2);
 	// System.out.println("id: "+blk2.getId()+" fullName "+blk2.getUserName()+" titluAnunt "+blk2.getFullName()); 
-	 listBlk=blst.getAllBlackListUser("Tina");
+	// listBlk=blst.getAllBlackListUser("Tina");
+	 msgDao.insertMesage(mgs);
 	 anuntCumparare4=buy.getAllAnuncement();
 	 for(BlackList blk3:listBlk) {
 		 System.out.println("id: "+blk3.getId()+" fullName "+blk3.getUserName()+" titluAnunt "+blk3.getFullName()); 
